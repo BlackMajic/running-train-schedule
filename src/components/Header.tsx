@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import ThemeToggle from './ThemeToggle'
 import {
+  Avatar,
   Autocomplete,
   EmptyState,
   ListBox,
@@ -8,6 +9,21 @@ import {
   Select,
   useFilter,
 } from "@heroui/react"
+
+const LineAvatar = ({route, extraClass}) => {
+  let lineColour = 'bg-line-ta'
+  let lineShort = 'KR'
+  if (route.Line === 'Sanyo Main Line') {
+    lineColour = 'bg-line-ha'
+    lineShort = 'HA'
+  }
+
+  return(
+    <Avatar size="sm" className={['rounded-sm', extraClass].join(' ')}>
+      <Avatar.Fallback className={['font-bold text-white', lineColour].join(' ')}>{lineShort}</Avatar.Fallback>
+    </Avatar>
+  )
+}
 
 export default function Header({data, routeIndex, setRouteIndex, rsIndex, setRsIndex}) {
   const {contains} = useFilter({sensitivity: "base"})
@@ -38,7 +54,24 @@ export default function Header({data, routeIndex, setRouteIndex, rsIndex, setRsI
             onChange={handleRoute}
           >
             <Autocomplete.Trigger>
-              <Autocomplete.Value />
+              <Autocomplete.Value>
+                {({defaultChildren, isPlaceholder, state}) => {
+                  if (isPlaceholder || state.selectedItems.length === 0) {
+                    return defaultChildren
+                  }
+                  const selectedItem = state.selectedItems[0]
+                  if (!selectedItem) {
+                    return defaultChildren
+                  }
+
+                  return(
+                    <div className="flex items-center gap-2">
+                      <LineAvatar route={data.Route[routeIndex]} extraClass={'size-6'} />
+                      <span className="font-black">{selectedItem.textValue}</span>
+                    </div>
+                  )
+                }}
+              </Autocomplete.Value>
               <Autocomplete.Indicator />
             </Autocomplete.Trigger>
             <Autocomplete.Popover>
@@ -51,12 +84,20 @@ export default function Header({data, routeIndex, setRouteIndex, rsIndex, setRsI
                   </SearchField.Group>
                 </SearchField>
                 <ListBox renderEmptyState={()=><EmptyState>No routes found</EmptyState>}>
-                  {data.Route.map((route)=>(
-                    <ListBox.Item key={i} id={i++} textValue={route.Type+'.'+route.Name}>
+                  {data.Route.map((route)=>{
+                    return(
+                    <ListBox.Item
+                      key={route.Type+'.'+route.Name}
+                      id={i++}
+                      textValue={route.Type+'.'+route.Name}
+                      isDisabled={route.Schedule === null}
+                      className="font-black"
+                    >
+                      <LineAvatar route={route} extraClass="" />
                       {route.Type+'.'+route.Name}
                       <ListBox.ItemIndicator />
                     </ListBox.Item>
-                  ))}
+                  )})}
                 </ListBox>
               </Autocomplete.Filter>
             </Autocomplete.Popover>
@@ -83,6 +124,7 @@ export default function Header({data, routeIndex, setRouteIndex, rsIndex, setRsI
         </div>
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
+          {/*
           <Link to="/about"
             className="hidden rounded-xl p-2 text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)] sm:block"
           >
@@ -92,6 +134,7 @@ export default function Header({data, routeIndex, setRouteIndex, rsIndex, setRsI
               <path fill="currentColor" d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
             </svg>
           </Link>
+          */}
           <a
             href="https://github.com/BlackMajic/running-train-schedule"
             target="_blank"

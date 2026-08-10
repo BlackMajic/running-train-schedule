@@ -54,7 +54,7 @@ _define:
         - *HR1100-2
         - *HR1100-4
   - &SMLineData
-    Name: &SMLine
+    Name: &SMLine Sanyo Main Line
     Station:
       - &A16 Nagara
       - &A17 Imao-chō
@@ -165,7 +165,7 @@ Route:
   - &Local.633F
     Direction: Down
     Type: Local
-    Name: 633FX # X???
+    Name: 633F # X???
     Line: *KFLine
     SpeedLimit: 80
     Distance: 6.2
@@ -228,7 +228,7 @@ Route:
         DrivingTime: 1M40S
         Arrive: 07:36:40
         Depart: 07:37:00
-      - StopName: *K06
+      - StopName: *K05
         DrivingTime: 1M40S
         Arrive: 07:38:40
         Depart: 07:39:00

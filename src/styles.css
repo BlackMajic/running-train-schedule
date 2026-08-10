@@ -7,8 +7,8 @@
 
 @theme {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --line-ta: rgba(255, 143, 0, 1.0) /* ta - Kofuku Railway Fukugawa line */
-  --line-ha: rgba(0, 120, 221, 1.0) /* ha - Sanyo Main line */
+  --color-line-ta: rgba(255, 143, 0, 1.0); /* ta - Kofuku Railway Fukugawa line */
+  --color-line-ha: rgba(0, 120, 221, 1.0); /* ha - Sanyo Main line */
 }
 
 :root {
