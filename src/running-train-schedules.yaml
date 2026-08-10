@@ -54,7 +54,7 @@ _define:
         - *HR1100-2
         - *HR1100-4
   - &SMLineData
-    Name: &SMLine Sanyo Main Line
+    Name: &SMLine Sanko Main Line
     Station:
       - &A16 Nagara
       - &A17 Imao-chō
