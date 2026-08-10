@@ -13,7 +13,7 @@ import {
 const LineAvatar = ({route, extraClass}) => {
   let lineColour = 'bg-line-ta'
   let lineShort = 'KR'
-  if (route.Line === 'Sanyo Main Line') {
+  if (route.Line === 'Sanko Main Line') {
     lineColour = 'bg-line-ha'
     lineShort = 'HA'
   }
