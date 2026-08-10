@@ -8,11 +8,16 @@ import ViteYaml from '@modyfi/vite-plugin-yaml';
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
+  base: '/running-train-schedule/',
   plugins: [
     devtools(),
-    nitro({ rollupConfig: { external: [/^@sentry\//] } }),
+    //nitro({ rollupConfig: { external: [/^@sentry\//] } }),
     tailwindcss(),
-    tanstackStart(),
+    tanstackStart({
+      prerender: {
+        enabled: true,
+      }
+    }),
     viteReact(),
     ViteYaml(),
   ],
