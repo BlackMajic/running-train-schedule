@@ -7,18 +7,18 @@ export const Route = createFileRoute('/')({ component: App })
 
 function App() {
   const ScheduleRow = ({row, lastRow}) => {
-    const DrivingTime = ({time}) => {
-      if (time === null || time === undefined) {
+    const DrivingTime = ({lastDeparture, arrival, departure}) => {
+      if (lastDeparture === undefined || lastDeparture === null) {
         return <></>
       }
-      let ms = time.split("M")
-      let sec = '00'
-      if (ms[1].length !== 0) {
-        sec = ms[1].substring(0, ms[1].length-1)
-      }
+
+      const thisStation = (arrival !== undefined && arrival !== null) ? arrival : departure
+      const arriveOrPass = Date.parse('1970-01-01T'+thisStation+'Z')
+      const departed = Date.parse('1970-01-01T'+lastDeparture+'Z')
+      const duration = new Date(arriveOrPass-departed)
       return (
         <div className="border border-l-4 text-center font-bold text-2xl content-center row-span-2">
-          {ms[0]}<span className="text-base align-middle">{sec}</span>
+          {duration.getMinutes()}<span className="text-base align-middle">{duration.getSeconds().toString().padStart(2, '0')}</span>
         </div>
       )
     }
@@ -45,7 +45,7 @@ function App() {
 
     const Departure = ({time, lastTime}) => {
       if (time === null || time === undefined) {
-        return (<div className="border border-l-2 text-center px-1 col-span-2 text-3xl font-bold content-center row-span-2" style={{letterSpacing:"-0.4em"}}>＝＝＝</div>)
+        return (<div className="border border-l-2 text-center px-1 col-span-2 text-3xl font-bold content-center row-span-2" style={{letterSpacing:"-0.5em"}}>＝＝</div>)
       }
       let prevHour = ''
       if (lastTime !== null && lastTime !== undefined) {
@@ -79,6 +79,10 @@ function App() {
       )
     }
 
+    if (row === undefined || row === null) {
+      return (<></>)
+    }
+
     let lastArrivalTime = null
     if (lastRow !== null) {
       lastArrivalTime = lastRow.Arrive
@@ -89,17 +93,17 @@ function App() {
       lastDepartureTime = lastRow.Depart
     }
 
-    let stopColour = (row != null && row.Arrive !== null && row.Arrive !== undefined)? 'bg-[var(--bg-stop)]' : ''
+    let stopColour = (row.Arrive !== null && row.Arrive !== undefined)? 'bg-[var(--bg-stop)]' : ''
 
     return (
       <>
-        <DrivingTime time={row?row.DrivingTime:null} />
-        <div className={['border text-justify px-1 col-span-2 content-center row-span-2 object-fit font-bold wrap-normal', stopColour].join(' ')}>{row?row.StopName:null}</div>
-        <Arrival time={row?row.Arrive:null} lastTime={lastArrivalTime} />
-        <Departure time={row?row.Depart:null} lastTime={lastDepartureTime} />
-        <div className="border text-center content-center row-span-2">{row?row.Track:null}</div>
-        <SpeedLimit limit={row?row.SpeedLimit:null} />
-        <div className="border border-r-4 text-center content-center row-span-2 p-6">{row?row.Article:null}</div>
+        <DrivingTime lastDeparture={lastDepartureTime} arrival={row.Arrive} departure={row.Depart} />
+        <div className={['border text-justify px-1 col-span-2 content-center row-span-2 object-fit font-bold wrap-normal', stopColour].join(' ')}>{row.Station.Name[langIndex]}</div>
+        <Arrival time={row.Arrive} lastTime={lastArrivalTime} />
+        <Departure time={row.Depart} lastTime={lastDepartureTime} />
+        <div className="border text-center content-center row-span-2">{row.Track}</div>
+        <SpeedLimit limit={row.SpeedLimit} />
+        <div className="border border-r-4 text-center content-center row-span-2 p-6">{row.Article}</div>
       </>
     )
   }
@@ -107,7 +111,7 @@ function App() {
   const TopBuffer = () => {
     return(
       <>
-        <div className="border border-l-4 row-span-2">{ /* only span the drive time */ }</div>
+        <div className="border border-l-4 row-span-2">{ /* drive time, rowspan first entry */ }</div>
         <div className="border col-span-2">{ /* stop */ }</div>
         <div className="border col-span-2">{ /* arrival */ }</div>
         <div className="border border-l-2 col-span-2">{ /* departure */ }</div>
@@ -132,7 +136,7 @@ function App() {
     )
   }
 
-  const Schedule = ({route, rollingStockIndex}) => {
+  const Schedule = ({route, rollingStockIndex, langIndex, loc}) => {
     if (route === undefined || route === null) {
       return <>bad route</>
     }
@@ -148,20 +152,38 @@ function App() {
       schedule.push(<ScheduleRow key="0" row={null} lastRow={null} />)
     }
 
+    let fields = []
+    if (route.Type === 'Local') {
+      fields.push(loc.Local[langIndex])
+    } else if (route.Type === 'Ltd.Exp') {
+      fields.push(loc.LtdExp[langIndex])
+    }
+    fields.push(
+      loc.Series[langIndex],
+      loc.Kph[langIndex],
+      loc.DrivingTime[langIndex],
+      loc.StopName[langIndex],
+      loc.Arrival[langIndex],
+      loc.Departure[langIndex],
+      loc.Track[langIndex],
+      loc.SpeedLimit[langIndex],
+      loc.Note[langIndex]
+    )
+
     return(
       <>
         <div className="grid grid-cols-4 grid-rows-2 w-160">
           <div className="border border-t-2 border-l-4 text-center content-center font-bold text-xl px-2">
-            {route.Type}
+            {fields.shift()}
           </div>
           <div className="border border-t-2 border-l-3 text-center content-center row-span-2 text-9xl font-bold">
             <span className="text-red-400">{route.RollingStock[rollingStockIndex].Cars}</span>
           </div>
           <div className="border border-t-2 border-l-2 text-center content-center row-span-2 text-4xl font-bold">
-            {route.RollingStock[rollingStockIndex].Series}<span className="text-xs align-text-bottom">series</span>
+            {route.RollingStock[rollingStockIndex].Series}<span className="text-xs align-text-bottom">{fields.shift()}</span>
           </div>
           <div className="border border-t-2 border-l-3 border-r-4 text-center content-center row-span-2 text-6xl font-bold">
-            {route.SpeedLimit}<span className="text-xs align-text-bottom">km/h</span>
+            {route.SpeedLimit}<span className="text-xs align-text-bottom">{fields.shift()}</span>
           </div>
           <div className="border border-l-4 text-center content-center font-bold text-xl">
             {route.Name}
@@ -169,13 +191,13 @@ function App() {
         </div>
 
         <div className="grid grid-cols-10 w-160">
-          <div className="border border-l-4 text-center font-bold content-center">Driving Time</div>
-          <div className="border col-span-2 text-center font-bold content-center">Stop Name</div>
-          <div className="border col-span-2 text-center font-bold content-center">Arrival</div>
-          <div className="border col-span-2 border-l-2 text-center font-bold content-center">Departure (Passing)</div>
-          <div className="border text-center font-bold content-center">Line</div>
-          <div className="border text-center font-bold content-center">Speed Limit</div>
-          <div className="border border-r-4 text-center font-bold content-center">Notes</div>
+          <div className="border border-l-4 text-center font-bold content-center">{fields.shift()}</div>
+          <div className="border col-span-2 text-center font-bold content-center">{fields.shift()}</div>
+          <div className="border col-span-2 text-center font-bold content-center">{fields.shift()}</div>
+          <div className="border col-span-2 border-l-2 text-center font-bold content-center">{fields.shift()}</div>
+          <div className="border text-center font-bold content-center">{fields.shift()}</div>
+          <div className="border text-center font-bold content-center">{fields.shift()}</div>
+          <div className="border border-r-4 text-center font-bold content-center">{fields.shift()}</div>
           <TopBuffer />
           {schedule}
           <BottomBuffer />
@@ -189,12 +211,17 @@ function App() {
 
   const [routeIndex, setRouteIndex] = useState(0)
   const [rsIndex, setRsIndex] = useState(0)
+  const [langIndex, setLangIndex] = useState(0)
 
   return (
     <>
-      <Header data={data} routeIndex={routeIndex} setRouteIndex={setRouteIndex} rsIndex={rsIndex} setRsIndex={setRsIndex} />
+      <Header data={data}
+        routeIndex={routeIndex} setRouteIndex={setRouteIndex}
+        rsIndex={rsIndex} setRsIndex={setRsIndex}
+        langIndex={langIndex} setLangIndex={setLangIndex}
+      />
       <main className="page-wrap pb-6 pt-2">
-        <Schedule route={data.Route[routeIndex]} rollingStockIndex={rsIndex} />
+        <Schedule route={data.Route[routeIndex]} rollingStockIndex={rsIndex} langIndex={langIndex} loc={data.Loc} />
       </main>
     </>
   )

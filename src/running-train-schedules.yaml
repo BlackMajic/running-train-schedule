@@ -40,37 +40,100 @@ _define:
   - &KFLineData
     Name: &KFLine Kofuku Railway Fukugawa Line
     Station: # Down order
-      - &K01 Ise
-      - &K02 Murakami
-      - &K03 Ise-Yamadera
-      - &K04 Sayū
-      - &K05 Kitami
-      - &K06 Okamachi
-      - &K07 Takahashi
+      - &K01
+        Name:
+          - Ise
+          - 井瀬
+      - &K02
+        Name:
+          - Murakami
+          - 村上
+      - &K03
+        Name:
+          - Ise-Yamadera
+          - 井瀬山寺
+      - &K04
+        Name:
+          - Sayū
+          - 左右
+      - &K05
+        Name:
+          - Kitami
+          - 木多見
+      - &K06
+        Name:
+          - Okamachi
+          - 岡町
+      - &K07
+        Name:
+          - Takahashi
+          - 高橋
     RollingStock:
       Local: &KFLocalTrains
         - *KR5000-2
         - *KR5000-4
         - *HR1100-2
         - *HR1100-4
+
   - &SMLineData
-    Name: &SMLine Sanko Main Line
+    Name: &SMLine Sankai Main Line
     Station:
-      - &A16 Nagara
-      - &A17 Imao-chō
-      - &A18 Shiohama
-      - &A19 Yūetsu
-      - &A20 Kaguradai
-      - &A21 Iwaminato
-      - &A22 Ōmishima
-      - &A23 Komori
-      - &A24 Hayakawa
-      - &A25 Ise
-      - &A26 Kasugano
-      - &A27 Nogata
-      - &A28 Takahashi    #A30
-      - &A29 Suzumenomiya #A29
-      - &A30 Kanamori     #A28
+      - &A16
+        Name:
+          - Nagara
+          - 長柄
+      - &A17
+        Name:
+          - Imao-chō
+          - 今尾町
+      - &A18
+        Name:
+          - Shiohama
+          - 潮浜
+      - &A19
+        Name:
+          - Yūetsu
+          - 夕江津
+      - &A20
+        Name:
+          - Kaguradai
+          - 神楽台
+      - &A21
+        Name:
+          - Iwaminato
+          - 岩湊
+      - &A22
+        Name:
+          - Ōmishima
+          - 大三島
+      - &A23
+        Name:
+          - Komori
+          - 小森
+      - &A24
+        Name:
+          - Hayakawa
+          - 早川
+      - &A25
+        <<: *K01 # Ise
+      - &A26
+        Name:
+          - Kasugano
+          - 春日乃
+      - &A27
+        Name:
+          - Nogata
+          - 野方
+      - &A28     #A30
+        <<: *K07 # Takahashi
+      - &A29     #A29
+        Name:
+          - Suzumenomiya
+          - 雀宮
+      - &A30     #A28
+        Name:
+          - Kanamori
+          - 金森
     RollingStock:
       Local: &SMLocalTrains
         - *HR1500-3
@@ -84,25 +147,50 @@ Language:
   - en
   - jp
 
-Station:
-  - &AA1
-    Name: 
-      en: asdf
-      jp: fdsa
-    Line:   [ A,  K]
-    Number: [25, 01]
+Loc:
+  Local:
+    - Local
+    - 普 通
+  LtdExp:
+    - Ltd.Exp
+    - 特 急
+  Series:
+    - series
+    - 系
+  Kph:
+    - km/h
+    - キ囗
+  DrivingTime:
+    - Driving Time
+    - 運 転 時
+  StopName:
+    - Stop Name
+    - 停 車 場 名
+  Arrival:
+    - Arrival
+    - 着
+  Departure:
+    - Departure (Passing)
+    - 発 ( 通 )
+  Track:
+    - Track
+    - 着 発 線
+  SpeedLimit:
+    - Speed Limt
+    - 制 限 速 度
+  Note:
+    - Note
+    - 記 事
 
 
 # Metadata for each route.
-#  - Duration, Distance, and Stops could be calculated from the schedule.
+#  - Distance, and Stops could be calculated from the schedule.
 #  - Direction could be replaced with isdown/isup.
 #  - Shunt/Cross/Pass could be a string array instead of individual bools.
 #
 # Schedule entries consist of:
-# StopName    - Pointer to the name of the station.
+# Station     - Pointer to the desired station object.
 #               '&A16' above defines Nagara, so '*A16' should be used here.
-# DrivingTime - Allotted time to arrive from the previous station. 'HH:MM:SS'
-#               Not populated for the first stop.
 # Arrive      - The scheduled arrival time for the train. 'HH:MM:SS'
 #               Not popluated if the train will not stop at the station.
 # Depart      - The scheduled departure (or passing) time of the train.
@@ -128,36 +216,29 @@ Route:
     WaitToPass: false
     RollingStock: *KFLocalTrains
     Schedule:
-      - StopName: *K07
-        DrivingTime:
+      - Station: *K07
         Arrive: 05:48:40
         Depart: 05:50:00
         Track: 
         SpeedLimit: /35
         Article:
-      - StopName: *K06
-        DrivingTime: 1M40S
+      - Station: *K06
         Arrive: 05:51:40
         Depart: 05:52:00
-      - StopName: *K05
-        DrivingTime: 1M40S
+      - Station: *K05
         Arrive: 05:53:40
         Depart: 05:54:00
-      - StopName: *K04
-        DrivingTime: 2M
+      - Station: *K04
         Arrive: 05:56:00
         Depart: 05:56:50
         SpeedLimit: 20/20
-      - StopName: *K03
-        DrivingTime: 1M40S
+      - Station: *K03
         Arrive: 05:58:30
         Depart: 05:58:50
-      - StopName: *K02
-        DrivingTime: 1M20S
+      - Station: *K02
         Arrive: 06:00:10
         Depart: 06:00:30
-      - StopName: *K01
-        DrivingTime: 1M25S
+      - Station: *K01
         Arrive: 06:01:55
         Depart:
         SpeedLimit: 60/
@@ -165,7 +246,7 @@ Route:
   - &Local.633F
     Direction: Down
     Type: Local
-    Name: 633F # X???
+    Name: 633F #X
     Line: *KFLine
     SpeedLimit: 80
     Distance: 6.2
@@ -176,40 +257,34 @@ Route:
     WaitToPass: false
     RollingStock: *KFLocalTrains
     Schedule:
-      - StopName: *K01
+      - Station: *K01
         Arrive: 06:49:30
         Depart: 06:50:00
         SpeedLimit: 30/30
-      - StopName: *K02
-        DrivingTime: 1M35S
+      - Station: *K02
         Arrive: 06:51:35
         Depart: 06:52:05
-      - StopName: *K03
-        DrivingTime: 1M15S
+      - Station: *K03
         Arrive: 06:53:20
         Depart: 06:53:50
-      - StopName: *K04
-        DrivingTime: 1M35S
+      - Station: *K04
         Arrive: 06:55:25
         Depart: 06:56:15
         SpeedLimit: 30/20
-      - StopName: *K05
-        DrivingTime: 1M45S
+      - Station: *K05
         Arrive: 06:58:00
         Depart: 06:58:20
-      - StopName: *K06
-        DrivingTime: 1M35S
+      - Station: *K06
         Arrive: 06:59:55
         Depart: 07:00:15
-      - StopName: *K07
-        DrivingTime: 1M50S
+      - Station: *K07
         Arrive: 07:02:05
         SpeedLimit: 25/
 
   - &Local.728F
     Direction: Up
     Type: Local
-    Name: 728F
+    Name: 728F #X
     Line: *KFLine
     SpeedLimit: 80
     Distance: 6.2
@@ -220,33 +295,27 @@ Route:
     WaitToPass: false
     RollingStock: *KFLocalTrains
     Schedule:
-      - StopName: *K07
+      - Station: *K07
         Arrive: 07:33:50
         Depart: 07:35:00
         SpeedLimit: /35
-      - StopName: *K06
-        DrivingTime: 1M40S
+      - Station: *K06
         Arrive: 07:36:40
         Depart: 07:37:00
-      - StopName: *K05
-        DrivingTime: 1M40S
+      - Station: *K05
         Arrive: 07:38:40
         Depart: 07:39:00
-      - StopName: *K04
-        DrivingTime: 1M50S
+      - Station: *K04
         Arrive: 07:40:50
         Depart: 07:41:50
         SpeedLimit: 20/20
-      - StopName: *K03
-        DrivingTime: 1M40S
+      - Station: *K03
         Arrive: 07:43:30
         Depart: 07:43:50
-      - StopName: *K02
-        DrivingTime: 1M20S
+      - Station: *K02
         Arrive: 07:45:10
         Depart: 07:45:30
-      - StopName: *K01
-        DrivingTime: 1M25S
+      - Station: *K01
         Arrive: 07:46:55
         SpeedLimit: 60/
 
@@ -356,7 +425,7 @@ Route:
     Schedule:
 
 ##
-## Sanko Main Line Route Definitions
+## Sankai Main Line Route Definitions
 ##
 
   - &Local.571A
@@ -463,63 +532,49 @@ Route:
     SpeedLimit: 120
     Type: Ltd.Exp
     Schedule:
-      - StopName: *A16
+      - Station: *A16
         Arrive: 06:50:10
         Depart: 06:51:00
-      - StopName: *A17
-        DrivingTime: 2M55S
+      - Station: *A17
         Depart: 06:53:55
         SpeedLimit: 90/95
-      - StopName: *A18
-        DrivingTime: 1M50S
+      - Station: *A18
         Depart: 06:55:45
         SpeedLimit: 80/
-      - StopName: *A19
-        DrivingTime: 1M55S
+      - Station: *A19
         Arrive: 06:57:40
         Depart: 06:58:20
         SpeedLimit: 90/
-      - StopName: *A20
-        DrivingTime: 1M50S
+      - Station: *A20
         Depart: 07:00:10
         SpeedLimit: 65/
-      - StopName: *A21
-        DrivingTime: 1M50S
+      - Station: *A21
         Depart: 07:02:00
-      - StopName: *A22
-        DrivingTime: 2M30S
+      - Station: *A22
         Arrive: 07:04:30
         Depart: 07:05:10
         SpeedLimit: 80/
-      - StopName: *A23
-        DrivingTime: 2M10S
+      - Station: *A23
         Depart: 07:07:20
-      - StopName: *A24
-        DrivingTime: 1M55S
+      - Station: *A24
         Depart: 07:09:15
         SpeedLimit: 100/90
-      - StopName: *A25
-        DrivingTime: 1M20S
+      - Station: *A25
         Depart: 07:10:35
         SpeedLimit: 70/
-      - StopName: *A26
-        DrivingTime: 1M40S
+      - Station: *A26
         Depart: 07:12:15
-      - StopName: *A27
-        DrivingTime: 1M10S
+      - Station: *A27
         Depart: 07:13:25
         SpeedLimit: 70/
-      - StopName: *A28
-        DrivingTime: 1M30S
+      - Station: *A28
         Arrive: 07:14:55
         Depart: 07:15:35
         SpeedLimit: 70/60
-      - StopName: *A29
-        DrivingTime: 2M10S
+      - Station: *A29
         Depart: 07:17:45
         SpeedLimit: /75
-      - StopName: *A30
-        DrivingTime: 3M20S
+      - Station: *A30
         Arrive: 07:21:05
         SpeedLimit: 35/
 
@@ -597,36 +652,30 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
-      - StopName: *A29
+      - Station: *A29
         Arrive: 08:26:20
         Depart: 08:27:00
         SpeedLimit: 65/
-      - StopName: *A28
-        DrivingTime: 1M55S
+      - Station: *A28
         Arrive: 08:28:55
         Depart: 08:29:25
         SpeedLimit: 70/70
-      - StopName: *A27
-        DrivingTime: 1M50S
+      - Station: *A27
         Arrive: 08:31:15
         Depart: 08:31:45
         SpeedLimit: /65
-      - StopName: *A26
-        DrivingTime: 2M45S
+      - Station: *A26
         Arrive: 08:34:30
         Depart: 08:37:10
         SpeedLimit: 35/35
-      - StopName: *A25
-        DrivingTime: 2M20S
+      - Station: *A25
         Arrive: 08:39:30
         Depart: 08:40:00
         SpeedLimit: 90/100
-      - StopName: *A24
-        DrivingTime: 3M
+      - Station: *A24
         Arrive: 08:43:00
         Depart: 08:43:30
-      - StopName: *A23
-        DrivingTime: 2M35S
+      - Station: *A23
         Arrive: 08:46:05
         SpeedLimit: 80/
 
@@ -945,7 +994,7 @@ Line:
       - *Local.1814F
       - *Local.2021F
 
-  SankaiMainLine:
+  HayamoriRailwaySankaiMainLine:
     <<: *SMLineData
     Routes:
       - *Local.571A

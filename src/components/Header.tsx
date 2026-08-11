@@ -13,7 +13,7 @@ import {
 const LineAvatar = ({route, extraClass}) => {
   let lineColour = 'bg-line-ta'
   let lineShort = 'KR'
-  if (route.Line === 'Sanko Main Line') {
+  if (route.Line === 'Sankai Main Line') {
     lineColour = 'bg-line-ha'
     lineShort = 'HA'
   }
@@ -25,7 +25,7 @@ const LineAvatar = ({route, extraClass}) => {
   )
 }
 
-export default function Header({data, routeIndex, setRouteIndex, rsIndex, setRsIndex}) {
+export default function Header({data, routeIndex, setRouteIndex, rsIndex, setRsIndex, langIndex, setLangIndex}) {
   const {contains} = useFilter({sensitivity: "base"})
 
   const handleRoute = (v) => {
@@ -39,13 +39,46 @@ export default function Header({data, routeIndex, setRouteIndex, rsIndex, setRsI
     setRsIndex(v)
   }
 
+  const handleLang = (v) => {
+    setLangIndex(v)
+  }
+
   let i = 0
   let j = 0
+  let k = 0
+
+  const langmoji = (lang) => {
+    if (lang === 'en') {
+      return(<>🇬🇧</>)
+    }
+    if (lang === 'jp') {
+      return (<>🇯🇵</>)
+    }
+  }
 
   return (
     <header className="no-print top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-lg">
       <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-1 sm:py-1">
         <div className="order-1 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:order-none sm:w-auto sm:flex-nowrap sm:pb-0">
+          <Select className="w-[70px]" onChange={handleLang} value={langIndex}>
+            <Select.Trigger>
+              <Select.Value />
+              <Select.Indicator />
+            </Select.Trigger>
+            <Select.Popover>
+              <ListBox>
+                {data.Language.map((lang) => (
+                  <ListBox.Item key={k} id={k++} textValue={lang}>
+                    {langmoji(lang)}
+                    <ListBox.ItemIndicator />
+                  </ListBox.Item>
+                ))}
+              </ListBox>
+            </Select.Popover>
+          </Select>
+        </div>
+
+        <div className="order-2 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:order-none sm:w-auto sm:flex-nowrap sm:pb-0">
           <Autocomplete
             className="w-[256px]"
             selectionMode="single"
@@ -104,7 +137,7 @@ export default function Header({data, routeIndex, setRouteIndex, rsIndex, setRsI
           </Autocomplete>
         </div>
 
-        <div className="order-2 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:order-none sm:w-auto sm:flex-nowrap sm:pb-0">
+        <div className="order-3 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:order-none sm:w-auto sm:flex-nowrap sm:pb-0">
           <Select className="w-[115px]" onChange={handleStock} value={rsIndex}>
             <Select.Trigger>
               <Select.Value />
