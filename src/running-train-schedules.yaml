@@ -191,6 +191,7 @@ Loc:
 # Schedule entries consist of:
 # Station     - Pointer to the desired station object.
 #               '&A16' above defines Nagara, so '*A16' should be used here.
+# Extra       - Print an X with the route name on the schedule
 # Arrive      - The scheduled arrival time for the train. 'HH:MM:SS'
 #               Not popluated if the train will not stop at the station.
 # Depart      - The scheduled departure (or passing) time of the train.
@@ -246,7 +247,8 @@ Route:
   - &Local.633F
     Direction: Down
     Type: Local
-    Name: 633F #X
+    Name: 633F
+    Extra: true #X
     Line: *KFLine
     SpeedLimit: 80
     Distance: 6.2
@@ -284,7 +286,8 @@ Route:
   - &Local.728F
     Direction: Up
     Type: Local
-    Name: 728F #X
+    Name: 728F
+    Extra: true #X
     Line: *KFLine
     SpeedLimit: 80
     Distance: 6.2
@@ -333,6 +336,29 @@ Route:
     WaitToPass: false
     RollingStock: *KFLocalTrains
     Schedule:
+      - Station: *K01
+        Arrive: 08:14:30
+        Depart: 08:15:00
+        SpeedLimit: 30/30
+      - Station: *K02
+        Arrive: 08:16:35
+        Depart: 08:17:05
+      - Station: *K03
+        Arrive: 08:18:20
+        Depart: 08:18:50
+      - Station: *K04
+        Arrive: 08:20:25
+        Depart: 08:21:15
+        SpeedLimit: 30/20
+      - Station: *K05
+        Arrive: 08:23:00
+        Depart: 08:23:20
+      - Station: *K06
+        Arrive: 08:24:55
+        Depart: 08:25:15
+      - Station: *K07
+        Arrive: 08:27:05
+        SpeedLimit: 25/
 
   - &Local.1136F
     Direction: Up
@@ -348,6 +374,29 @@ Route:
     WaitToPass: false
     RollingStock: *KFLocalTrains
     Schedule:
+      - Station: *K07
+        Arrive: 11:53:40
+        Depart: 11:55:00
+        SpeedLimit: /35
+      - Station: *K06
+        Arrive: 11:56:40
+        Depart: 11:57
+      - Station: *K05
+        Arrive: 11:58:40
+        Depart: 11:59
+      - Station: *K04
+        Arrive: 12:01
+        Depart: 12:01:50
+        SpeedLimit: 20/20
+      - Station: *K03
+        Arrive: 12:03:30
+        Depart: 12:03:50
+      - Station: *K02
+        Arrive: 12:05:10
+        Depart: 12:05:30
+      - Station: *K01
+        Arrive: 12:06:55
+        SpeedLimit: 60/
 
   - &Local.1623F
     Direction: Down
@@ -363,11 +412,35 @@ Route:
     WaitToPass: false
     RollingStock: *KFLocalTrains
     Schedule:
+      - Station: *K01
+        Arrive: 16:54:30
+        Depart: 16:55:00
+        SpeedLimit: 30/30
+      - Station: *K02
+        Arrive: 16:56:35
+        Depart: 16:57:05
+      - Station: *K03
+        Arrive: 16:58:20
+        Depart: 16:58:50
+      - Station: *K04
+        Arrive: 17:00:25
+        Depart: 17:01:15
+        SpeedLimit: 30/20
+      - Station: *K05
+        Arrive: 17:03:00
+        Depart: 17:30:20
+      - Station: *K06
+        Arrive: 17:04:55
+        Depart: 17:05:15
+      - Station: *K07
+        Arrive: 17:07:05
+        SpeedLimit: 25/
 
   - &Local.1710F
     Direction: Up
     Type: Local
     Name: 1710F
+    Extra: true #X
     Line: *KFLine
     SpeedLimit: 80
     Distance: 6.2
@@ -378,11 +451,35 @@ Route:
     WaitToPass: false
     RollingStock: *KFLocalTrains
     Schedule:
+      - Station: *K07
+        Arrive: 17:33:40
+        Depart: 17:35:00
+        SpeedLimit: /35
+      - Station: *K06
+        Arrive: 17:36:40
+        Depart: 17:37
+      - Station: *K05
+        Arrive: 17:38:40
+        Depart: 17:39
+      - Station: *K04
+        Arrive: 17:41
+        Depart: 17:42
+        SpeedLimit: 20/20
+      - Station: *K03
+        Arrive: 17:43:40
+        Depart: 17:44
+      - Station: *K02
+        Arrive: 17:45:20
+        Depart: 17:45:40
+      - Station: *K01
+        Arrive: 17:47:05
+        SpeedLimit: 60/
 
   - &Local.1719F
     Direction: Down
     Type: Local
     Name: 1719F
+    Extra: true #X
     Line: *KFLine
     SpeedLimit: 80
     Distance: 6.2
@@ -393,6 +490,29 @@ Route:
     WaitToPass: false
     RollingStock: *KFLocalTrains
     Schedule:
+      - Station: *K01
+        Arrive: 17:34:30
+        Depart: 17:35:00
+        SpeedLimit: 30/30
+      - Station: *K02
+        Arrive: 17:36:35
+        Depart: 17:37:05
+      - Station: *K03
+        Arrive: 17:38:20
+        Depart: 17:38:50
+      - Station: *K04
+        Arrive: 17:40:25
+        Depart: 17:41:15
+        SpeedLimit: 30/20
+      - Station: *K05
+        Arrive: 17:43:00
+        Depart: 17:43:20
+      - Station: *K06
+        Arrive: 17:44:55
+        Depart: 17:45:15
+      - Station: *K07
+        Arrive: 17:47:05
+        SpeedLimit: 25/
 
   - &Local.1814F
     Direction: Up
@@ -408,6 +528,29 @@ Route:
     WaitToPass: false
     RollingStock: *KFLocalTrains
     Schedule:
+      - Station: *K07
+        Arrive: 18:54:20
+        Depart: 18:55:00
+        SpeedLimit: /35
+      - Station: *K06
+        Arrive: 18:56:40
+        Depart: 18:57
+      - Station: *K05
+        Arrive: 18:58:40
+        Depart: 18:59
+      - Station: *K04
+        Arrive: 19:01
+        Depart: 19:01:50
+        SpeedLimit: 20/20
+      - Station: *K03
+        Arrive: 19:03:30
+        Depart: 19:03:50
+      - Station: *K02
+        Arrive: 19:05:10
+        Depart: 19:05:30
+      - Station: *K01
+        Arrive: 19:06:55
+        SpeedLimit: 60/
 
   - &Local.2021F
     Crossing: false
@@ -423,6 +566,30 @@ Route:
     Type: Local
     WaitToPass: false
     Schedule:
+      - Station: *K01
+        Arrive: 20:54:30
+        Depart: 20:55:00
+        SpeedLimit: 30/30
+      - Station: *K02
+        Arrive: 20:56:35
+        Depart: 20:57:05
+      - Station: *K03
+        Arrive: 20:58:20
+        Depart: 20:58:50
+      - Station: *K04
+        Arrive: 21:00:25
+        Depart: 21:01:15
+        SpeedLimit: 30/20
+      - Station: *K05
+        Arrive: 21:03:00
+        Depart: 21:03:20
+      - Station: *K06
+        Arrive: 21:04:55
+        Depart: 21:05:15
+      - Station: *K07
+        Arrive: 21:07:05
+        SpeedLimit: 25/
+
 
 ##
 ## Sankai Main Line Route Definitions
@@ -1029,3 +1196,29 @@ Line:
       - *Local.1940A
       - *Local.2059A
       - *Local.2116A
+
+
+##Up
+      - Station: *K07
+        Arrive: 
+        Depart: 
+        SpeedLimit: /35
+      - Station: *K06
+        Arrive: 
+        Depart: 
+      - Station: *K05
+        Arrive: 
+        Depart: 
+      - Station: *K04
+        Arrive: 
+        Depart: 
+        SpeedLimit: 20/20
+      - Station: *K03
+        Arrive: 
+        Depart: 
+      - Station: *K02
+        Arrive: 
+        Depart: 
+      - Station: *K01
+        Arrive: 
+        SpeedLimit: 60/
