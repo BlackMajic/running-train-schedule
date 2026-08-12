@@ -49,10 +49,10 @@ export default function Header({data, routeIndex, setRouteIndex, rsIndex, setRsI
 
   const langmoji = (lang) => {
     if (lang === 'en') {
-      return(<>🇬🇧</>)
+      return(<span className='text-base'>🇬🇧</span>)
     }
     if (lang === 'jp') {
-      return (<>🇯🇵</>)
+      return (<span className='text-base'>🇯🇵</span>)
     }
   }
 

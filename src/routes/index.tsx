@@ -5,16 +5,23 @@ import data from '../running-train-schedules.yaml'
 
 export const Route = createFileRoute('/')({ component: App })
 
+function newDate(d) {
+  return new Date('1970-01-01T'+d+'Z')
+}
+
 function App() {
   const ScheduleRow = ({row, lastRow}) => {
     const DrivingTime = ({lastDeparture, arrival, departure}) => {
+      const emptyCell = <div className="border border-l-4 text-center font-bold text-2xl content-center row-span-2"></div>
       if (lastDeparture === undefined || lastDeparture === null) {
         return <></>
+      } if (arrival === undefined || arrival === null || departure === undefined || departure === null) { 
+        return emptyCell
       }
 
       const thisStation = (arrival !== undefined && arrival !== null) ? arrival : departure
-      const arriveOrPass = Date.parse('1970-01-01T'+thisStation+'Z')
-      const departed = Date.parse('1970-01-01T'+lastDeparture+'Z')
+      const arriveOrPass = newDate(thisStation)
+      const departed = newDate(lastDeparture)
       const duration = new Date(arriveOrPass-departed)
       return (
         <div className="border border-l-4 text-center font-bold text-2xl content-center row-span-2">
@@ -23,42 +30,42 @@ function App() {
       )
     }
 
-    const Arrival = ({time, lastTime}) => {
-      if (time === null || time === undefined) {
+    const Arrival = ({arrival, prevDeparture}) => {
+      if (arrival === null || arrival === undefined) {
         return (<div className="border text-center px-1 text-3xl font-bold col-span-2 content-center row-span-2">...</div>)
       }
-      let prevHour = ''
-      if (lastTime !== null && lastTime !== undefined) {
-        prevHour = lastTime.split(':')[0]
+      let prevHour = -1
+      if (prevDeparture !== null && prevDeparture !== undefined) {
+        prevHour = newDate(prevDeparture).getHours()
       }
-      let t = time.split(':')
+      let t = newDate(arrival)
       let h = ''
-      if (t[0] !== prevHour) {
-        h = t[0] + '.'
+      if (t.getHours() !== prevHour) {
+        h = t.getHours().toString() + '.'
       }
       return(
         <div className="border text-right px-1 font-bold text-3xl col-span-2 content-center row-span-2">
-          {h}{t[1]}<span className="font-bold align-top text-lg">{t[2]}</span>
+          {h}{t.getMinutes().toString().padStart(2, '0')}<span className="font-bold align-top text-lg">{t.getSeconds().toString().padStart(2, '0')}</span>
         </div>
       )
     }
 
-    const Departure = ({time, lastTime}) => {
-      if (time === null || time === undefined) {
+    const Departure = ({departure, prevDeparture}) => {
+      if (departure === null || departure === undefined) {
         return (<div className="border border-l-2 text-center px-1 col-span-2 text-3xl font-bold content-center row-span-2" style={{letterSpacing:"-0.5em"}}>＝＝</div>)
       }
-      let prevHour = ''
-      if (lastTime !== null && lastTime !== undefined) {
-        prevHour = lastTime.split(':')[0]
+      let prevHour = -1
+      if (prevDeparture !== null && prevDeparture !== undefined) {
+        prevHour = new Date('1970-01-01T'+prevDeparture).getHours()
       }
-      let t = time.split(':')
+      let t = new Date('1970-01-01T'+departure)
       let h = ''
-      if (t[0] !== prevHour) {
-        h = t[0] + '.'
+      if (t.getHours() !== prevHour) {
+        h = t.getHours().toString() + '.'
       }
       return(
         <div className="border border-l-2 text-right px-1 font-bold col-span-2 text-3xl content-center row-span-2">
-          {h}{t[1]}<span className="font-bold align-top text-lg">{t[2]}</span>
+          {h}{t.getMinutes().toString().padStart(2, '0')}<span className="font-bold align-top text-lg">{t.getSeconds().toString().padStart(2, '0')}</span>
         </div>
       )
     }
@@ -99,8 +106,8 @@ function App() {
       <>
         <DrivingTime lastDeparture={lastDepartureTime} arrival={row.Arrive} departure={row.Depart} />
         <div className={['border text-justify px-1 col-span-2 content-center row-span-2 object-fit font-bold wrap-normal', stopColour].join(' ')}>{row.Station.Name[langIndex]}</div>
-        <Arrival time={row.Arrive} lastTime={lastArrivalTime} />
-        <Departure time={row.Depart} lastTime={lastDepartureTime} />
+        <Arrival arrival={row.Arrive} prevDeparture={lastArrivalTime} />
+        <Departure departure={row.Depart} prevDeparture={lastDepartureTime} />
         <div className="border text-center content-center row-span-2">{row.Track}</div>
         <SpeedLimit limit={row.SpeedLimit} />
         <div className="border border-r-4 text-center content-center row-span-2 p-6">{row.Article}</div>
@@ -143,6 +150,7 @@ function App() {
 
     let schedule = []
     let lastRow = null
+    const extra = (route.Extra)? ' X':''
     if (route.Schedule !== undefined && route.Schedule !== null) {
       for (let i = 0; i < route.Schedule.length; ++i) {
         schedule.push(<ScheduleRow key={i} row={route.Schedule[i]} lastRow={lastRow} />)
@@ -186,7 +194,7 @@ function App() {
             {route.SpeedLimit}<span className="text-xs align-text-bottom">{fields.shift()}</span>
           </div>
           <div className="border border-l-4 text-center content-center font-bold text-xl">
-            {route.Name}
+            {route.Name}{extra}
           </div>
         </div>
 
