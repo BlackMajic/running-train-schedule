@@ -176,7 +176,7 @@ Loc:
     - Track
     - 着 発 線
   SpeedLimit:
-    - Speed Limt
+    - Speed Limit
     - 制 限 速 度
   Note:
     - Note
@@ -609,6 +609,17 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
+      - Station: *A28
+        Arrive: 05:18:15
+        Depart: 05:19:00
+        SpeedLimit: 25/40
+      - Station: *A29
+        Arrive: 05:21:35
+        Depart: 05:22:05
+        SpeedLimit: /75
+      - Station: *A30
+        Arrive: 05:25:25
+        SpeedLimit: 45/
 
   - &Local.570A
     Direction: Up
@@ -624,6 +635,62 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
+      - Station: *A30
+        Arrive: 05:29:00
+        Depart: 05:30:00
+        SpeedLimit: /40
+      - Station: *A29
+        Arrive: 05:33:00
+        Depart: 05:33:40
+      - Station: *A28
+        Arrive: 05:36:10
+        Depart: 05:36:40
+        SpeedLimit: 65/
+      - Station: *A27
+        Arrive: 05:38:35
+        Depart: 05:39:05
+        SpeedLimit: 70/70
+      - Station: *A26
+        Arrive: 05:40:55
+        Depart: 05:41:25
+        SpeedLimit: /65
+      - Station: *A25
+        Arrive: 05:43:45
+        Depart: 05:44:15
+        SpeedLimit: 85/
+      - Station: *A24
+        Arrive: 05:46:30
+        Depart: 05:47:00
+        SpeedLimit: 90/100
+      - Station: *A23
+        Arrive: 05:50:00
+        Depart: 05:50:30
+        SpeedLimit: 
+      - Station: *A22
+        Arrive: 05:53:05
+        Depart: 05:53:45
+        SpeedLimit: 80/
+      - Station: *A21
+        Arrive: 05:56:50
+        Depart: 05:57:20
+      - Station: *A20
+        Arrive: 06:00:25
+        Depart: 06:00:55
+      - Station: *A19
+        Arrive: 06:03:10
+        Depart: 06:03:50
+        SpeedLimit: 85/80
+      - Station: *A18
+        Arrive: 06:06:05
+        Depart: 06:06:35
+        SpeedLimit: 80/
+      - Station: *A17
+        Arrive: 06:09:30
+        Depart: 06:10:00
+        SpeedLimit: 
+      - Station: *A16
+        Arrive: 06:14:30
+        SpeedLimit: 85/
 
   - &Local.523A
     Direction: Down
@@ -639,6 +706,39 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
+      - Station: *A22
+        Arrive: 05:46:20
+        Depart: 05:47:00
+        SpeedLimit: 80/
+      - Station: *A23
+        Arrive: 05:49:35
+        Depart: 05:50:05
+      - Station: *A24
+        Arrive: 05:53:05
+        Depart: 05:53:35
+        SpeedLimit: 100/90
+      - Station: *A25
+        Arrive: 05:55:55
+        Depart: 05:56:35
+        SpeedLimit: 70/
+      - Station: *A26
+        Arrive: 05:59
+        Depart: 05:59:30
+      - Station: *A27
+        Arrive: 06:01:20
+        Depart: 06:01:50
+        SpeedLimit: 70/
+      - Station: *A28
+        Arrive: 06:03:50
+        Depart: 06:04:30
+        SpeedLimit: 70/60
+      - Station: *A29
+        Arrive: 06:07:05
+        Depart: 06:07:35
+        SpeedLimit: /75
+      - Station: *A30
+        Arrive: 06:10:55
+        SpeedLimit: 45/
 
   - &Local.617A
     Direction: Down
@@ -654,6 +754,61 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
+      - Station: *A16
+        Arrive: 06:09:20
+        Depart: 06:10:00
+      - Station: *A17
+        Arrive: 06:13:35
+        Depart: 06:14:05
+        SpeedLimit: 90/95
+      - Station: *A18
+        Arrive: 06:16:55
+        Depart: 06:17:25
+        SpeedLimit: 80/
+      - Station: *A19
+        Arrive: 06:19:45
+        Depart: 06:20:25
+        SpeedLimit: 90/
+      - Station: *A20
+        Arrive: 06:22:40
+        Depart: 06:23:10
+        SpeedLimit: 65/
+      - Station: *A21
+        Arrive: 06:26:10
+        Depart: 06:26:40
+      - Station: *A22
+        Arrive: 06:29:45
+        Depart: 06:30:25
+        SpeedLimit: 80/
+      - Station: *A23
+        Arrive: 06:33:00
+        Depart: 06:33:30
+      - Station: *A24
+        Arrive: 06:36:30
+        Depart: 06:37:00
+        SpeedLimit: 100/90
+      - Station: *A25
+        Arrive: 06:39:20
+        Depart: 06:40:00
+        SpeedLimit: 70/
+      - Station: *A26
+        Arrive: 06:42:45
+        Depart: 06:42:55
+      - Station: *A27
+        Arrive: 06:44:45
+        Depart: 06:45:15
+        SpeedLimit: 70/
+      - Station: *A28
+        Arrive: 06:47:15
+        Depart: 06:47:55
+        SpeedLimit: 70/60
+      - Station: *A29
+        Arrive: 06:50:30
+        Depart: 06:51:00
+        SpeedLimit: /75
+      - Station: *A30
+        Arrive: 06:54:20
+        SpeedLimit: 45/
 
   - &Local.658A
     Direction: Up
@@ -669,6 +824,53 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
+      - Station: *A28
+        Arrive: 06:17:20
+        Depart: 06:18:00
+        SpeedLimit: 35/35
+      - Station: *A27
+        Arrive: 06:20:30
+        Depart: 06:20:50
+        SpeedLimit: 70/70
+      - Station: *A26
+        Arrive: 06:22:40
+        Depart: 06:23:10
+        SpeedLimit: /65
+      - Station: *A25
+        Arrive: 06:25:30
+        Depart: 06:26:00
+        SpeedLimit: 85/
+      - Station: *A24
+        Arrive: 06:28:15
+        Depart: 06:28:45
+        SpeedLimit: 90/100
+      - Station: *A23
+        Arrive: 06:31:45
+        Depart: 06:32:15
+      - Station: *A22
+        Arrive: 06:34:50
+        Depart: 06:35:30
+        SpeedLimit: 80/
+      - Station: *A21
+        Arrive: 06:38:35
+        Depart: 06:39:05
+      - Station: *A20
+        Arrive: 06:42:10
+        Depart: 06:42:40
+      - Station: *A19
+        Arrive: 06:44:55
+        Depart: 06:45:35
+        SpeedLimit: 85/80
+      - Station: *A18
+        Arrive: 06:47:50
+        Depart: 06:48:20
+        SpeedLimit: 80/
+      - Station: *A17
+        Arrive: 06:5115
+        Depart: 06:51:45
+      - Station: *A16
+        Arrive: 06:56:15
+        SpeedLimit: 85/
 
   - &Local.622A
     Direction: Up
@@ -684,6 +886,60 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
+      - Station: *A30
+        Arrive: 06:29:00
+        Depart: 06:30:00
+        SpeedLimit: /40
+      - Station: *A29
+        Arrive: 06:33:00
+        Depart: 06:33:40
+      - Station: *A28
+        Arrive: 06:36:10
+        Depart: 06:36:40
+        SpeedLimit: 65/
+      - Station: *A27
+        Arrive: 06:38:35
+        Depart: 06:39:05
+        SpeedLimit: 70/70
+      - Station: *A26
+        Arrive: 06:40:55
+        Depart: 06:41:25
+        SpeedLimit: /65
+      - Station: *A25
+        Arrive: 06:43:45
+        Depart: 06:44:15
+        SpeedLimit: 85/
+      - Station: *A24
+        Arrive: 06:46:30
+        Depart: 06:47:00
+        SpeedLimit: 90/100
+      - Station: *A23
+        Arrive: 06:50:00
+        Depart: 06:50:30
+      - Station: *A22
+        Arrive: 06:53:05
+        Depart: 06:53:45
+        SpeedLimit: 80/
+      - Station: *A21
+        Arrive: 06:56:50
+        Depart: 06:57:20
+      - Station: *A20
+        Arrive: 07:00:25
+        Depart: 07:00:55
+      - Station: *A19
+        Arrive: 07:03:10
+        Depart: 07:03:50
+        SpeedLimit: 85/80
+      - Station: *A18
+        Arrive: 07:06:05
+        Depart: 07:06:35
+        SpeedLimit: 80/
+      - Station: *A17
+        Arrive: 07:09:30
+        Depart: 07:10:00
+      - Station: *A16
+        Arrive: 07:14:30
+        SpeedLimit: 85/
 
   - &Ltd.Exp.51G
     Direction: Down
@@ -748,6 +1004,7 @@ Route:
   - &Local.711A
     Direction: Down
     Name: 711A
+    Extra: true
     Distance: 17.5
     Duration: 25
     Stops: 7
@@ -759,6 +1016,31 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
+      - Station: *A16
+        Arrive: 07:04:00
+        Depart: 07:05:00
+      - Station: *A17
+        Arrive: 07:08:35
+        Depart: 07:09:05
+        SpeedLimit: 90/95
+      - Station: *A18
+        Arrive: 07:11:50
+        Depart: 07:12:20
+        SpeedLimit: 80/
+      - Station: *A19
+        Arrive: 07:15:00
+        Depart: 07:19:50
+        SpeedLimit: 45/30
+      - Station: *A20
+        Arrive: 07:22:40
+        Depart: 07:23:10
+        SpeedLimit: 65/
+      - Station: *A21
+        Arrive: 07:26:10
+        Depart: 07:26:40
+      - Station: *A22
+        Arrive: 07:29:45
+        SpeedLimit: 80/
 
   - &Local.716A
     Direction: Up
@@ -774,6 +1056,60 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
+      - Station: *A30
+        Arrive: 07:09:00
+        Depart: 07:10:00
+        SpeedLimit: /40
+      - Station: *A29
+        Arrive: 07:13:00
+        Depart: 07:13:40
+      - Station: *A28
+        Arrive: 07:16:10
+        Depart: 07:16:40
+        SpeedLimit: 65/
+      - Station: *A27
+        Arrive: 07:18:35
+        Depart: 07:19:05
+        SpeedLimit: 70/70
+      - Station: *A26
+        Arrive: 07:20:55
+        Depart: 07:21:25
+        SpeedLimit: /65
+      - Station: *A25
+        Arrive: 07:23:45
+        Depart: 07:24:15
+        SpeedLimit: 85/
+      - Station: *A24
+        Arrive: 07:26:30
+        Depart: 07:27:00
+        SpeedLimit: 90/100
+      - Station: *A23
+        Arrive: 07:30:00
+        Depart: 07:30:30
+      - Station: *A22
+        Arrive: 07:33:05
+        Depart: 07:33:45
+        SpeedLimit: 80/
+      - Station: *A21
+        Arrive: 07:36:50
+        Depart: 07:37:20
+      - Station: *A20
+        Arrive: 07:40:25
+        Depart: 07:40:55
+      - Station: *A19
+        Arrive: 07:43:10
+        Depart: 07:43:50
+        SpeedLimit: 85/80
+      - Station: *A18
+        Arrive: 07:46:05
+        Depart: 07:46:35
+        SpeedLimit: 80/
+      - Station: *A17
+        Arrive: 07:49:30
+        Depart: 07:50:00
+      - Station: *A16
+        Arrive: 07:54:30
+        SpeedLimit: 85/
 
   - &Local.764A
     Direction: Up
@@ -789,6 +1125,39 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
+      - Station: *A30
+        Arrive: 07:34:00
+        Depart: 07:35:00
+        SpeedLimit: /40
+      - Station: *A29
+        Arrive: 07:38:00
+        Depart: 07:38:30
+      - Station: *A28
+        Arrive: 07:41:00
+        Depart: 07:41:30
+        SpeedLimit: 65/
+      - Station: *A27
+        Arrive: 07:43:25
+        Depart: 07:43:55
+        SpeedLimit: 70/70
+      - Station: *A26
+        Arrive: 07:45:45
+        Depart: 07:46:15
+        SpeedLimit: /65
+      - Station: *A25
+        Arrive: 07:48:35
+        Depart: 07:49:05
+        SpeedLimit: 85/
+      - Station: *A24
+        Arrive: 07:51:20
+        Depart: 07:51:50
+        SpeedLimit: 90/100
+      - Station: *A23
+        Arrive: 07:54:50
+        Depart: 07:55:20
+      - Station: *A22
+        Arrive: 07:57:55
+        SpeedLimit: 80/
 
   - &Local.777A
     Direction: Down
@@ -804,10 +1173,66 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
+      - Station: *A16
+        Arrive: 07:29:20
+        Depart: 07:30:00
+      - Station: *A17
+        Arrive: 07:33:35
+        Depart: 07:34:05
+        SpeedLimit: 90/95
+      - Station: *A18
+        Arrive: 07:36:55
+        Depart: 07:37:25
+        SpeedLimit: 80/
+      - Station: *A19
+        Arrive: 07:39:45
+        Depart: 07:40:25
+        SpeedLimit: 90/
+      - Station: *A20
+        Arrive: 07:42:40
+        Depart: 07:43:10
+        SpeedLimit: 65/
+      - Station: *A21
+        Arrive: 07:46:10
+        Depart: 07:46:40
+      - Station: *A22
+        Arrive: 07:49:45
+        Depart: 07:50:25
+        SpeedLimit: 80/
+      - Station: *A23
+        Arrive: 07:53:00
+        Depart: 07:53:30
+      - Station: *A24
+        Arrive: 07:56:30
+        Depart: 07:57:00
+        SpeedLimit: 100/90
+      - Station: *A25
+        Arrive: 07:59:20
+        Depart: 08:00:00
+        SpeedLimit: 70/
+      - Station: *A26
+        Arrive: 08:02:25
+        Depart: 08:02:55
+      - Station: *A27
+        Arrive: 08:04:45
+        Depart: 08:05:15
+        SpeedLimit: 70/
+      - Station: *A28
+        Arrive: 08:07:15
+        Depart: 08:07:55
+        SpeedLimit: 70/60
+      - Station: *A29
+        Arrive: 08:10:30
+        Depart: 08:11:00
+        SpeedLimit: /75
+      - Station: *A30
+        Arrive: 08:14:20
+        SpeedLimit: 45/
 
   - &Local.876A
     Direction: Up
     Name: 876A
+    Extra: true
     Distance: 12.2
     Duration: 19
     Stops: 7
@@ -819,30 +1244,30 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
-      - Station: *A29
+      - Station: *A28
         Arrive: 08:26:20
         Depart: 08:27:00
         SpeedLimit: 65/
-      - Station: *A28
+      - Station: *A27
         Arrive: 08:28:55
         Depart: 08:29:25
         SpeedLimit: 70/70
-      - Station: *A27
+      - Station: *A26
         Arrive: 08:31:15
         Depart: 08:31:45
         SpeedLimit: /65
-      - Station: *A26
+      - Station: *A25
         Arrive: 08:34:30
         Depart: 08:37:10
         SpeedLimit: 35/35
-      - Station: *A25
+      - Station: *A24
         Arrive: 08:39:30
         Depart: 08:40:00
         SpeedLimit: 90/100
-      - Station: *A24
+      - Station: *A23
         Arrive: 08:43:00
         Depart: 08:43:30
-      - Station: *A23
+      - Station: *A22
         Arrive: 08:46:05
         SpeedLimit: 80/
 
@@ -860,6 +1285,50 @@ Route:
     SpeedLimit: 120
     Type: Ltd.Exp
     Schedule:
+      - Station: *A30
+        Arrive: 08:29:10
+        Depart: 08:30:00
+        SpeedLimit: /35
+      - Station: *A29
+        Depart: 08:32:15
+      - Station: *A28
+        Arrive: 08:34:20
+        Depart: 08:35:00
+        SpeedLimit: 65/
+      - Station: *A27
+        Depart: 08:36:30
+        SpeedLimit: 70/70
+      - Station: *A26
+        Depart: 08:37:30
+        SpeedLimit: /65
+      - Station: *A25
+        Depart: 08:39:00
+        SpeedLimit: 85/
+      - Station: *A24
+        Depart: 08:40:20
+        SpeedLimit: 90/100
+      - Station: *A23
+        Depart: 08:42:15
+      - Station: *A22
+        Arrive: 08:44:35
+        Depart: 08:45:15
+        SpeedLimit: 80/
+      - Station: *A21
+        Depart: 08:47:40
+      - Station: *A20
+        Depart: 08:49:30
+      - Station: *A19
+        Arrive: 08:51:15
+        Depart: 08:51:55
+        SpeedLimit: 85/80
+      - Station: *A18
+        Depart: 08:53:45
+        SpeedLimit: 80/
+      - Station: *A17
+        Depart: 08:55:40
+      - Station: *A16
+        Arrive: 08:58:40
+        SpeedLimit: 85/
 
   - &Local.823A
     Direction: Down
@@ -875,6 +1344,61 @@ Route:
     SpeedLimit: 100
     Type: Local
     Schedule:
+      - Station: *A16
+        Arrive: 08:43:00
+        Depart: 08:44:00
+      - Station: *A17
+        Arrive: 08:47:35
+        Depart: 08:48:05
+        SpeedLimit: 90/95
+      - Station: *A18
+        Arrive: 08:50:55
+        Depart: 08:51:25
+        SpeedLimit: 80/
+      - Station: *A19
+        Arrive: 08:53:45
+        Depart: 08:54:25
+        SpeedLimit: 90/
+      - Station: *A20
+        Arrive: 08:56:40
+        Depart: 08:57:10
+        SpeedLimit: 65/
+      - Station: *A21
+        Arrive: 09:00:10
+        Depart: 09:00:40
+      - Station: *A22
+        Arrive: 09:03:45
+        Depart: 09:04:25
+        SpeedLimit: 80/
+      - Station: *A23
+        Arrive: 09:07:00
+        Depart: 09:07:30
+      - Station: *A24
+        Arrive: 09:10:30
+        Depart: 09:11:00
+        SpeedLimit: 100/90
+      - Station: *A25
+        Arrive: 09:13:20
+        Depart: 09:14:00
+        SpeedLimit: 70/
+      - Station: *A26
+        Arrive: 09:16:25
+        Depart: 09:16:55
+      - Station: *A27
+        Arrive: 09:18:45
+        Depart: 09:19:15
+        SpeedLimit: 70/
+      - Station: *A28
+        Arrive: 09:21:15
+        Depart: 09:21:55
+        SpeedLimit: 70/60
+      - Station: *A29
+        Arrive: 09:24:30
+        Depart: 09:25:00
+        SpeedLimit: /75
+      - Station: *A30
+        Arrive: 09:28:20
+        SpeedLimit: 45/
 
   - &Local.922A
     Direction: Up
@@ -939,6 +1463,7 @@ Route:
   - &Local.1677A
     Direction: Down
     Name: 1677A
+    Extra: true
     Distance: 16.7
     Duration: 27
     Stops: 9
@@ -1059,6 +1584,7 @@ Route:
   - &Local.1816A
     Direction: Up
     Name: 1816A
+    Extra: true
     Distance: 17.5
     Duration: 24
     Stops: 7
@@ -1119,6 +1645,7 @@ Route:
   - &Local.2059A
     Direction: Down
     Name: 2059A
+    Extra: true
     Distance: 17.5
     Duration: 25
     Stops: 7
@@ -1199,26 +1726,63 @@ Line:
 
 
 ##Up
-      - Station: *K07
+      - Station: *A30
         Arrive: 
         Depart: 
-        SpeedLimit: /35
-      - Station: *K06
+        SpeedLimit: /40
+      - Station: *A29
         Arrive: 
         Depart: 
-      - Station: *K05
+        SpeedLimit: 
+      - Station: *A28
         Arrive: 
         Depart: 
-      - Station: *K04
+        SpeedLimit: 65/
+      - Station: *A27
         Arrive: 
         Depart: 
-        SpeedLimit: 20/20
-      - Station: *K03
+        SpeedLimit: 70/70
+      - Station: *A26
         Arrive: 
         Depart: 
-      - Station: *K02
+        SpeedLimit: /65
+      - Station: *A25
         Arrive: 
         Depart: 
-      - Station: *K01
+        SpeedLimit: 85/
+      - Station: *A24
         Arrive: 
-        SpeedLimit: 60/
+        Depart: 
+        SpeedLimit: 90/100
+      - Station: *A23
+        Arrive: 
+        Depart: 
+        SpeedLimit: 
+      - Station: *A22
+        Arrive: 
+        Depart: 
+        SpeedLimit: 80/
+      - Station: *A21
+        Arrive: 
+        Depart: 
+        SpeedLimit: 
+      - Station: *A20
+        Arrive: 
+        Depart: 
+        SpeedLimit: 
+      - Station: *A19
+        Arrive: 
+        Depart: 
+        SpeedLimit: 85/80
+      - Station: *A18
+        Arrive: 
+        Depart: 
+        SpeedLimit: 80/
+      - Station: *A17
+        Arrive: 
+        Depart: 
+        SpeedLimit: 
+      - Station: *A16
+        Arrive: 
+        Depart: 
+        SpeedLimit: 85/
