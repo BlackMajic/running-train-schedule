@@ -15,7 +15,7 @@ function App() {
       const emptyCell = <div className="border border-l-4 text-center font-bold text-2xl content-center row-span-2"></div>
       if (lastDeparture === undefined || lastDeparture === null) {
         return <></>
-      } if (arrival === undefined || arrival === null || departure === undefined || departure === null) { 
+      } if ((arrival === undefined || arrival === null) && (departure === undefined || departure === null)) {
         return emptyCell
       }
 
@@ -25,7 +25,7 @@ function App() {
       const duration = new Date(arriveOrPass-departed)
       return (
         <div className="border border-l-4 text-center font-bold text-2xl content-center row-span-2">
-          {duration.getMinutes()}<span className="text-base align-middle">{duration.getSeconds().toString().padStart(2, '0')}</span>
+          {duration.getUTCMinutes()}<span className="text-base align-middle">{duration.getUTCSeconds().toString().padStart(2, '0')}</span>
         </div>
       )
     }
@@ -36,16 +36,16 @@ function App() {
       }
       let prevHour = -1
       if (prevDeparture !== null && prevDeparture !== undefined) {
-        prevHour = newDate(prevDeparture).getHours()
+        prevHour = newDate(prevDeparture).getUTCHours()
       }
       let t = newDate(arrival)
       let h = ''
-      if (t.getHours() !== prevHour) {
-        h = t.getHours().toString() + '.'
+      if (t.getUTCHours() !== prevHour) {
+        h = t.getUTCHours().toString().padStart(2, '0') + '.'
       }
       return(
         <div className="border text-right px-1 font-bold text-3xl col-span-2 content-center row-span-2">
-          {h}{t.getMinutes().toString().padStart(2, '0')}<span className="font-bold align-top text-lg">{t.getSeconds().toString().padStart(2, '0')}</span>
+          {h}{t.getUTCMinutes().toString().padStart(2, '0')}<span className="font-bold align-top text-lg">{t.getUTCSeconds().toString().padStart(2, '0')}</span>
         </div>
       )
     }
@@ -56,16 +56,16 @@ function App() {
       }
       let prevHour = -1
       if (prevDeparture !== null && prevDeparture !== undefined) {
-        prevHour = new Date('1970-01-01T'+prevDeparture).getHours()
+        prevHour = new Date('1970-01-01T'+prevDeparture).getUTCHours()
       }
       let t = new Date('1970-01-01T'+departure)
       let h = ''
-      if (t.getHours() !== prevHour) {
-        h = t.getHours().toString() + '.'
+      if (t.getUTCHours() !== prevHour) {
+        h = t.getUTCHours().toString().padStart(2, '0') + '.'
       }
       return(
         <div className="border border-l-2 text-right px-1 font-bold col-span-2 text-3xl content-center row-span-2">
-          {h}{t.getMinutes().toString().padStart(2, '0')}<span className="font-bold align-top text-lg">{t.getSeconds().toString().padStart(2, '0')}</span>
+          {h}{t.getUTCMinutes().toString().padStart(2, '0')}<span className="font-bold align-top text-lg">{t.getUTCSeconds().toString().padStart(2, '0')}</span>
         </div>
       )
     }
