@@ -866,7 +866,7 @@ Route:
         Depart: 06:48:20
         SpeedLimit: 80/
       - Station: *A17
-        Arrive: 06:5115
+        Arrive: 06:51:15
         Depart: 06:51:45
       - Station: *A16
         Arrive: 06:56:15
