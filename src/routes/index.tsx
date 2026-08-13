@@ -56,9 +56,9 @@ function App() {
       }
       let prevHour = -1
       if (prevDeparture !== null && prevDeparture !== undefined) {
-        prevHour = new Date('1970-01-01T'+prevDeparture).getUTCHours()
+        prevHour = newDate(prevDeparture).getUTCHours()
       }
-      let t = new Date('1970-01-01T'+departure)
+      let t = newDate(departure)
       let h = ''
       if (t.getUTCHours() !== prevHour) {
         h = t.getUTCHours().toString().padStart(2, '0') + '.'
