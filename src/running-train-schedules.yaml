@@ -428,7 +428,7 @@ Route:
         SpeedLimit: 30/20
       - Station: *K05
         Arrive: 17:03:00
-        Depart: 17:30:20
+        Depart: 17:03:20
       - Station: *K06
         Arrive: 17:04:55
         Depart: 17:05:15
